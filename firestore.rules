@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    function isValidSong(data) {
+      return data.keys().hasAll(['id', 'title', 'artist', 'originalKey', 'genre', 'content']) &&
+             data.id is string && data.id.size() <= 128 &&
+             data.title is string && data.title.size() <= 200 &&
+             data.artist is string && data.artist.size() <= 200 &&
+             data.originalKey is string && data.originalKey.size() <= 10 &&
+             data.genre is string && data.genre.size() <= 50 &&
+             data.content is string && data.content.size() <= 50000;
+    }
+
+    match /songs/{songId} {
+      allow read: if true;
+      allow create, update: if isValidSong(request.resource.data);
+      allow delete: if true;
+    }
+
+    match /favorites/{favoriteId} {
+      allow read, write: if true;
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

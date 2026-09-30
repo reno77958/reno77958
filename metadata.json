@@ -1,0 +1,8 @@
+{
+  "name": "ChordJitu - Transpose Chord Gitar & Lirik",
+  "description": "Aplikasi transpose chord gitar interaktif dengan fitur auto-scroll, pencarian lagu, simpan favorit, dan dashboard admin.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

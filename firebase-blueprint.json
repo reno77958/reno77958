@@ -1,0 +1,43 @@
+{
+  "entities": {
+    "Song": {
+      "title": "Song",
+      "description": "Koleksi chord gitar dan lirik lagu ChordJitu",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "artist": { "type": "string" },
+        "originalKey": { "type": "string" },
+        "genre": { "type": "string" },
+        "tempo": { "type": "string" },
+        "capo": { "type": "number" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "artist", "originalKey", "genre", "content"]
+    },
+    "Favorite": {
+      "title": "Favorite",
+      "description": "Daftar lagu favorit",
+      "type": "object",
+      "properties": {
+        "songId": { "type": "string" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["songId", "userId"]
+    }
+  },
+  "firestore": {
+    "/songs/{songId}": {
+      "schema": "Song",
+      "description": "Koleksi publik lagu beserta kunci gitar dan lirik"
+    },
+    "/favorites/{favoriteId}": {
+      "schema": "Favorite",
+      "description": "Lagu favorit tersimpan"
+    }
+  }
+}
